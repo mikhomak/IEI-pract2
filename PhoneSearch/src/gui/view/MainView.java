@@ -17,5 +17,11 @@ public class MainView extends JFrame {
         setContentPane(mainPanel);
     }
 
-    
+    public JButton getSearchButton() {
+        return searchButton;
+    }
+
+    public JTextArea getTextArea1() {
+        return textArea1;
+    }
 }

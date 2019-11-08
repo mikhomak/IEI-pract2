@@ -13,5 +13,9 @@ public class MainViewController {
 
     public MainViewController() {
         mainView = new MainView();
+        searchButton = mainView.getSearchButton();
+        textArea1 = mainView.getTextArea1();
+
+        searchButton.addActionListener(new SearchListener());
     }
 }
