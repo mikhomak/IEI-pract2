@@ -1,6 +1,6 @@
 package persistence.models;
 
-public class Phone {
+public class PhoneModel {
     private String name;
     private String price;
     private String brand;

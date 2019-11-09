@@ -2,8 +2,11 @@ package persistence;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import persistence.models.PhoneModel;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class PhoneSearch implements IPhoneSearch {
@@ -25,12 +28,17 @@ public class PhoneSearch implements IPhoneSearch {
         webPages.put(Sites.PCCOMPONENTS, PCCOMPONENTS_URL);
     }
 
-    public void getTheNameOfThePhone() {
+    public void performSearch() {
         DriverChrome.getInstance().getDriver().get(webPages.get(Sites.FNAC));
+        getToTheSearchPage();
+
+        final List<PhoneModel> phoneModels = new ArrayList<>();
+    }
+
+    private void getToTheSearchPage() {
         final WebElement searchBar = DriverChrome.getInstance().getDriver().findElement(By.name("Search"));
         searchBar.sendKeys("xiamoi");
         searchBar.submit();
-
     }
 
     public void changeSite(final Sites site){
