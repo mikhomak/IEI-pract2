@@ -17,8 +17,12 @@ public class PhoneSearch implements IPhoneSearch {
     private final static String PCCOMPONENTS_URL = "https://www.pccomponentes.com/";
 
     private final static String SEARCH = "Search";
+    private final static String ARTICLE_TITLE="//*[contains(@class, 'Article-title')]";
+    private final static String ARTICLE_PRICE="//*[contains(@class, 'userPrice')]";
+    private final static String ARTICLE_MANUFACTURER="//*[contains(@class, 'data')]";
 
-    private final static String PHONE_SEARCH_CLASS = "//*[contains(@class, 'Article-title')]";
+
+    private final static String PHONE_SEARCH_CLASS = "//*[contains(@class, 'Article-item')]";
 
     private final static Map<Sites, String> webPages = new HashMap<>();
 
@@ -32,25 +36,28 @@ public class PhoneSearch implements IPhoneSearch {
         webPages.put(Sites.PCCOMPONENTS, PCCOMPONENTS_URL);
     }
 
-    public void performSearch() {
+    public List<PhoneModel> performSearch(final String searchWord) {
         DriverChrome.getInstance().getDriver().get(webPages.get(Sites.FNAC));
-        getToTheSearchPage();
+        getToTheSearchPage(searchWord);
 
         final List<PhoneModel> phoneModels = new ArrayList<>();
         final List<WebElement> phoneElements = getPhoneElements();
         phoneElements.forEach(phone -> createPhone(phone, phoneModels));
-        System.out.println(phoneModels);
+        return phoneModels;
     }
 
     private void createPhone(final WebElement phone, final List<PhoneModel> phoneModels) {
         final PhoneModel phoneModel = new PhoneModel();
-        phoneModel.setName(phone.getText());
+        phoneModel.setName(phone.findElement(By.xpath(ARTICLE_TITLE)).getText());
+        phoneModel.setBrand(phone.findElement(By.xpath(ARTICLE_MANUFACTURER)).getText());
+        phoneModel.setPrice(phone.findElement(By.xpath(ARTICLE_PRICE)).getText());
         phoneModels.add(phoneModel);
+        System.out.println(phoneModel);
     }
 
-    private void getToTheSearchPage() {
+    private void getToTheSearchPage(final String searchWord) {
         final WebElement searchBar = DriverChrome.getInstance().getDriver().findElement(By.name(SEARCH));
-        searchBar.sendKeys("xiamoi");
+        searchBar.sendKeys(searchWord);
         searchBar.submit();
     }
 

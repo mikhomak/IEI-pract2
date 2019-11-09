@@ -17,7 +17,7 @@ public class MainViewController {
         searchButton = mainView.getSearchButton();
         textArea1 = mainView.getTextArea1();
 
-        searchButton.addActionListener(new SearchListener());
+        searchButton.addActionListener(new SearchListener(textArea1));
     }
 
     public void showMainFrame(){

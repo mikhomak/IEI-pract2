@@ -28,4 +28,9 @@ public class PhoneModel {
     public void setBrand(String brand) {
         this.brand = brand;
     }
+
+    @Override
+    public String toString() {
+        return name + " " + brand + " " + price + "\n";
+    }
 }

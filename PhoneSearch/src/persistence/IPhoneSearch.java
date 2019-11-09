@@ -1,7 +1,11 @@
 package persistence;
 
+import persistence.models.PhoneModel;
+
+import java.util.List;
+
 public interface IPhoneSearch {
 
-    void performSearch();
+    List<PhoneModel> performSearch(final String searchWord);
 
 }
