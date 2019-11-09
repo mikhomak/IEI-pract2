@@ -4,7 +4,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
-public class DriverChrome {
+public class DriverChrome implements IDriver {
 
     private final static String DRIVER_PATH = "B:\\Documents\\Java projects\\IEI pract2\\Selenium\\chromedriver.exe";
     private final static String CHROME_PROPERTY = "webdriver.chrome.driver";
@@ -13,14 +13,14 @@ public class DriverChrome {
     private static WebDriver driver;
     private static DriverChrome instance = null;
 
-    public static DriverChrome getInstance() {
+    static IDriver getInstance() {
         if (instance == null) {
             instance = new DriverChrome();
         }
         return instance;
     }
 
-    public DriverChrome() {
+    private DriverChrome() {
         System.setProperty(CHROME_PROPERTY, DRIVER_PATH);
         final ChromeOptions chromeOptions = new ChromeOptions();
         chromeOptions.addArguments(ARGUMENTS);
@@ -29,5 +29,9 @@ public class DriverChrome {
 
     public WebDriver getDriver() {
         return driver;
+    }
+
+    public void stopDriver(){
+        driver.quit();
     }
 }

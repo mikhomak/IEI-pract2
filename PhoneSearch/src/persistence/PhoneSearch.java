@@ -1,6 +1,8 @@
 package persistence;
 
-import java.sql.Driver;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -23,8 +25,12 @@ public class PhoneSearch implements IPhoneSearch {
         webPages.put(Sites.PCCOMPONENTS, PCCOMPONENTS_URL);
     }
 
-    public void getTheNameOfThePhone(){
-
+    public void getTheNameOfThePhone() {
+        DriverChrome.getInstance().getDriver().get(webPages.get(Sites.FNAC));
+        final WebElement searchBar = DriverChrome.getInstance().getDriver().findElement(By.id("searchInput"));
+        searchBar.sendKeys("xiamoi");
+        searchBar.submit();
+        DriverChrome.getInstance().getDriver().close();
     }
 
     public void changeSite(final Sites site){
