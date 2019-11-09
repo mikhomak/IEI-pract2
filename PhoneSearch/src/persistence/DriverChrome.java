@@ -6,7 +6,7 @@ import org.openqa.selenium.chrome.ChromeOptions;
 
 public class DriverChrome implements IDriver {
 
-    private final static String DRIVER_PATH = "B:\\Documents\\Java projects\\IEI pract2\\Selenium\\chromedriver.exe";
+    private final static String DRIVER_PATH = "B:\\Documents\\Java projects\\IEI pract2\\drivers\\chromedriver78.exe";
     private final static String CHROME_PROPERTY = "webdriver.chrome.driver";
     private final static String ARGUMENTS = "--start-maximized";
 

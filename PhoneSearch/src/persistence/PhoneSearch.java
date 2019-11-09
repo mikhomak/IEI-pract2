@@ -27,10 +27,10 @@ public class PhoneSearch implements IPhoneSearch {
 
     public void getTheNameOfThePhone() {
         DriverChrome.getInstance().getDriver().get(webPages.get(Sites.FNAC));
-        final WebElement searchBar = DriverChrome.getInstance().getDriver().findElement(By.id("searchInput"));
+        final WebElement searchBar = DriverChrome.getInstance().getDriver().findElement(By.name("Search"));
         searchBar.sendKeys("xiamoi");
         searchBar.submit();
-        DriverChrome.getInstance().getDriver().close();
+
     }
 
     public void changeSite(final Sites site){
