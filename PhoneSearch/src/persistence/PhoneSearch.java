@@ -12,9 +12,13 @@ import java.util.Map;
 public class PhoneSearch implements IPhoneSearch {
 
 
-    private final static String AMAZON_URL ="https://www.amazon.es/";
-    private final static String FNAC_URL ="https://www.fnac.es/";
-    private final static String PCCOMPONENTS_URL ="https://www.pccomponentes.com/";
+    private final static String AMAZON_URL = "https://www.amazon.es/";
+    private final static String FNAC_URL = "https://www.fnac.es/";
+    private final static String PCCOMPONENTS_URL = "https://www.pccomponentes.com/";
+
+    private final static String SEARCH = "Search";
+
+    private final static String PHONE_SEARCH_CLASS = "//*[contains(@class, 'Article-title')]";
 
     private final static Map<Sites, String> webPages = new HashMap<>();
 
@@ -33,15 +37,28 @@ public class PhoneSearch implements IPhoneSearch {
         getToTheSearchPage();
 
         final List<PhoneModel> phoneModels = new ArrayList<>();
+        final List<WebElement> phoneElements = getPhoneElements();
+        phoneElements.forEach(phone -> createPhone(phone, phoneModels));
+        System.out.println(phoneModels);
+    }
+
+    private void createPhone(final WebElement phone, final List<PhoneModel> phoneModels) {
+        final PhoneModel phoneModel = new PhoneModel();
+        phoneModel.setName(phone.getText());
+        phoneModels.add(phoneModel);
     }
 
     private void getToTheSearchPage() {
-        final WebElement searchBar = DriverChrome.getInstance().getDriver().findElement(By.name("Search"));
+        final WebElement searchBar = DriverChrome.getInstance().getDriver().findElement(By.name(SEARCH));
         searchBar.sendKeys("xiamoi");
         searchBar.submit();
     }
 
-    public void changeSite(final Sites site){
+    private List<WebElement> getPhoneElements() {
+        return DriverChrome.getInstance().getDriver().findElements(By.xpath(PHONE_SEARCH_CLASS));
+    }
+
+    public void changeSite(final Sites site) {
         DriverChrome.getInstance().getDriver().get(webPages.get(site));
     }
 }
