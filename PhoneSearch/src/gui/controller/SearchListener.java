@@ -18,6 +18,7 @@ public class SearchListener implements ActionListener {
     private JCheckBox fnacBox;
     private JCheckBox pccomponentsBox;
     private JComboBox<String> brandField;
+    private final static String DEFAULT_SEARCH_WORD = "xiamoi";
 
 
     SearchListener(final JComboBox brandField, final JTextArea textArea, final JCheckBox amazon, final JCheckBox fnac, final JCheckBox pccomponents) {
@@ -31,7 +32,11 @@ public class SearchListener implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent actionEvent) {
-        final List<PhoneModel> phoneModels = phoneSearch.performSearch((String) brandField.getSelectedItem(), getSitesToSearch());
+        String searchWord = (String) brandField.getSelectedItem();
+        if (searchWord == null || searchWord.equals("")) {
+            searchWord = DEFAULT_SEARCH_WORD;
+        }
+        final List<PhoneModel> phoneModels = phoneSearch.performSearch(searchWord, getSitesToSearch());
         phoneModels.forEach(phone -> textArea.append(phone.toString()));
     }
 
