@@ -1,11 +1,14 @@
 package persistence.siteConstants;
 
+import org.openqa.selenium.By;
+
 public class ASiteConst implements ISiteConst {
     String url;
     String itemPath;
     String titlePath;
     String pricePath;
     String manufacturerPath;
+    String searchPath;
 
     @Override
     public String getUrl() {
@@ -30,5 +33,10 @@ public class ASiteConst implements ISiteConst {
     @Override
     public String getItemPath() {
         return itemPath;
+    }
+
+    @Override
+    public By getSearchBar() {
+        return null;
     }
 }

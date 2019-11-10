@@ -12,7 +12,6 @@ import java.util.List;
 public class PhoneSearch implements IPhoneSearch {
 
 
-    private final static String SEARCH = "Search";
     private final SiteFabric siteFabric;
 
 
@@ -24,7 +23,7 @@ public class PhoneSearch implements IPhoneSearch {
     public List<PhoneModel> performSearch(final String searchWord, final Sites site) {
         final ISiteConst siteConst = getSiteFabric().createSite(site);
         DriverChrome.getInstance().getDriver().get(siteConst.getUrl());
-        getToTheSearchPage(searchWord);
+        getToTheSearchPage(searchWord, siteConst);
         final List<PhoneModel> phoneModels = new ArrayList<>();
         final List<WebElement> phoneElements = getPhoneElements(siteConst);
         phoneElements.forEach(phone -> createPhone(phone, phoneModels, siteConst));
@@ -40,8 +39,8 @@ public class PhoneSearch implements IPhoneSearch {
         System.out.println(phoneModel);
     }
 
-    private void getToTheSearchPage(final String searchWord) {
-        final WebElement searchBar = DriverChrome.getInstance().getDriver().findElement(By.name(SEARCH));
+    private void getToTheSearchPage(final String searchWord, final ISiteConst siteConst) {
+        final WebElement searchBar = DriverChrome.getInstance().getDriver().findElement(siteConst.getSearchBar());
         searchBar.sendKeys(searchWord);
         searchBar.submit();
     }
