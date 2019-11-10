@@ -11,8 +11,10 @@ public class SiteFabric {
                 siteConst = new FnacConst();
                 break;
             case AMAZON:
+                siteConst = new AmazonConst();
                 break;
             case PCCOMPONENTS:
+                siteConst = new PccomponentsConst();
                 break;
 
         }
