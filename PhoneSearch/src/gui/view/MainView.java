@@ -57,4 +57,8 @@ public class MainView extends JFrame {
     public JComboBox<String> getBrandField() {
         return brandField;
     }
+
+    public JTextField getModelField() {
+        return modelField;
+    }
 }

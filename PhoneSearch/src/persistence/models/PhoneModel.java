@@ -3,7 +3,6 @@ package persistence.models;
 public class PhoneModel {
     private String name;
     private String price;
-    private String brand;
     private String web;
 
     public String getName() {
@@ -20,14 +19,6 @@ public class PhoneModel {
 
     public void setPrice(String price) {
         this.price = price;
-    }
-
-    public String getBrand() {
-        return brand;
-    }
-
-    public void setBrand(String brand) {
-        this.brand = brand;
     }
 
     public String getWeb() {

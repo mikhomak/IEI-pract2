@@ -14,7 +14,18 @@ public class MainViewController {
         mainView = new MainView();
         searchButton = mainView.getSearchButton();
 
-        searchButton.addActionListener(new SearchListener(getMainView().getBrandField(),getMainView().getTextArea1(), getMainView().getAmazonBox(), getMainView().getFnacBox(), getMainView().getPccomponentsBox()));
+        initializeListener();
+    }
+
+    private void initializeListener() {
+        final SearchListener searchListener = new SearchListener();
+        searchListener.setAmazonBox(getMainView().getAmazonBox());
+        searchListener.setFnacBox(getMainView().getFnacBox());
+        searchListener.setPccomponentsBox(getMainView().getPccomponentsBox());
+        searchListener.setBrandField(getMainView().getBrandField());
+        searchListener.setModelField(getMainView().getModelField());
+        searchListener.setTextArea(getMainView().getTextArea1());
+        searchButton.addActionListener(searchListener);
     }
 
     public void showMainFrame() {

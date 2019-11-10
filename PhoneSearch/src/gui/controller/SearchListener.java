@@ -17,16 +17,14 @@ public class SearchListener implements ActionListener {
     private JCheckBox amazonBox;
     private JCheckBox fnacBox;
     private JCheckBox pccomponentsBox;
-    private JComboBox<String> brandField;
+    private JComboBox brandField;
+    private JTextField modelField;
+
+
     private final static String DEFAULT_SEARCH_WORD = "xiamoi";
 
 
-    SearchListener(final JComboBox brandField, final JTextArea textArea, final JCheckBox amazon, final JCheckBox fnac, final JCheckBox pccomponents) {
-        this.textArea = textArea;
-        amazonBox = amazon;
-        fnacBox = fnac;
-        pccomponentsBox = pccomponents;
-        this.brandField = brandField;
+    SearchListener() {
         phoneSearch = new PhoneSearch();
     }
 
@@ -52,5 +50,54 @@ public class SearchListener implements ActionListener {
             sites.add(Sites.FNAC);
         }
         return sites;
+    }
+
+    public JTextArea getTextArea() {
+        return textArea;
+    }
+
+    public void setTextArea(JTextArea textArea) {
+        this.textArea = textArea;
+    }
+
+    public JCheckBox getAmazonBox() {
+        return amazonBox;
+    }
+
+    public void setAmazonBox(JCheckBox amazonBox) {
+        this.amazonBox = amazonBox;
+    }
+
+    public JCheckBox getFnacBox() {
+        return fnacBox;
+    }
+
+    public void setFnacBox(JCheckBox fnacBox) {
+        this.fnacBox = fnacBox;
+    }
+
+    public JCheckBox getPccomponentsBox() {
+        return pccomponentsBox;
+    }
+
+    public void setPccomponentsBox(JCheckBox pccomponentsBox) {
+        this.pccomponentsBox = pccomponentsBox;
+    }
+
+    public JComboBox getBrandField() {
+        return brandField;
+    }
+
+    public void setBrandField(JComboBox brandField) {
+        this.brandField = brandField;
+    }
+
+
+    public JTextField getModelField() {
+        return modelField;
+    }
+
+    public void setModelField(JTextField modelField) {
+        this.modelField = modelField;
     }
 }
