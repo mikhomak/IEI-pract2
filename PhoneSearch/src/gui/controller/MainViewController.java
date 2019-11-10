@@ -8,15 +8,13 @@ public class MainViewController {
 
     private MainView mainView;
     private JButton searchButton;
-    private JTextArea textArea1;
 
 
     public MainViewController() {
         mainView = new MainView();
         searchButton = mainView.getSearchButton();
-        textArea1 = mainView.getTextArea1();
 
-        searchButton.addActionListener(new SearchListener(textArea1, getMainView().getAmazonBox(), getMainView().getFnacBox(), getMainView().getPccomponentsBox()));
+        searchButton.addActionListener(new SearchListener(getMainView().getBrandField(),getMainView().getTextArea1(), getMainView().getAmazonBox(), getMainView().getFnacBox(), getMainView().getPccomponentsBox()));
     }
 
     public void showMainFrame() {

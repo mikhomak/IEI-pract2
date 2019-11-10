@@ -17,18 +17,21 @@ public class SearchListener implements ActionListener {
     private JCheckBox amazonBox;
     private JCheckBox fnacBox;
     private JCheckBox pccomponentsBox;
+    private JComboBox<String> brandField;
 
-    SearchListener(final JTextArea textArea, final JCheckBox amazon, final JCheckBox fnac, final JCheckBox pccomponents) {
+
+    SearchListener(final JComboBox brandField, final JTextArea textArea, final JCheckBox amazon, final JCheckBox fnac, final JCheckBox pccomponents) {
         this.textArea = textArea;
         amazonBox = amazon;
         fnacBox = fnac;
         pccomponentsBox = pccomponents;
+        this.brandField = brandField;
         phoneSearch = new PhoneSearch();
     }
 
     @Override
     public void actionPerformed(ActionEvent actionEvent) {
-        final List<PhoneModel> phoneModels = phoneSearch.performSearch("xiamoi", getSitesToSearch());
+        final List<PhoneModel> phoneModels = phoneSearch.performSearch((String) brandField.getSelectedItem(), getSitesToSearch());
         phoneModels.forEach(phone -> textArea.append(phone.toString()));
     }
 

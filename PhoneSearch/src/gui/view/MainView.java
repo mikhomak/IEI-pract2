@@ -16,14 +16,22 @@ public class MainView extends JFrame {
     private JCheckBox amazonBox;
     private JCheckBox fnacBox;
     private JCheckBox pccomponentsBox;
-    private JTextField textField1;
-    private JComboBox comboBox1;
+    private JTextField modelField;
+    private JComboBox<String> brandField;
 
     private final List<String> brands = Arrays.asList("huawei", "xiamoi","samsung");
 
     public MainView() throws HeadlessException {
         setSize(WIDTH, HEIGHT);
         setContentPane(mainPanel);
+        initializeBrandComboBox();
+
+    }
+
+    private void initializeBrandComboBox() {
+        final DefaultComboBoxModel<String> brandModel = new DefaultComboBoxModel<String>();
+        brandModel.addAll(brands);
+        brandField.setModel(brandModel);
     }
 
     public JButton getSearchButton() {
@@ -44,5 +52,9 @@ public class MainView extends JFrame {
 
     public JCheckBox getPccomponentsBox() {
         return pccomponentsBox;
+    }
+
+    public JComboBox<String> getBrandField() {
+        return brandField;
     }
 }

@@ -36,7 +36,7 @@ public class PhoneSearch implements IPhoneSearch {
         phoneModel.setWeb(siteConst.getWeb());
         try {
             phoneModel.setName(phone.findElement(By.xpath(siteConst.getTitlePath())).getText());
-        }catch (NoSuchElementException ex){
+        } catch (NoSuchElementException ex) {
             phoneModel.setName("No name has been found");
         }
         try {
