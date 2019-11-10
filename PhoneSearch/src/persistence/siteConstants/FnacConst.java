@@ -5,6 +5,7 @@ import org.openqa.selenium.By;
 public class FnacConst extends ASiteConst {
 
     public FnacConst() {
+        web = "Fnac";
         url = "https://www.fnac.es";
         titlePath = ".//*[contains(@class, 'Article-title')]";
         pricePath = ".//*[contains(@class, 'userPrice')]";

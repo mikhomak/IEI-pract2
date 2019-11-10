@@ -9,6 +9,12 @@ public class ASiteConst implements ISiteConst {
     String pricePath;
     String manufacturerPath;
     String searchPath;
+    String web;
+
+    @Override
+    public String getWeb() {
+        return web;
+    }
 
     @Override
     public String getUrl() {

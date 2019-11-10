@@ -4,6 +4,7 @@ public class PhoneModel {
     private String name;
     private String price;
     private String brand;
+    private String web;
 
     public String getName() {
         return name;
@@ -29,8 +30,16 @@ public class PhoneModel {
         this.brand = brand;
     }
 
+    public String getWeb() {
+        return web;
+    }
+
+    public void setWeb(String web) {
+        this.web = web;
+    }
+
     @Override
     public String toString() {
-        return name + " " + brand + " " + price + "\n";
+        return web + " : " + name + " " + price + "\n";
     }
 }

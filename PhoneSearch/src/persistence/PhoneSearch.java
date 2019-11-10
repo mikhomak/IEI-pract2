@@ -1,6 +1,7 @@
 package persistence;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import persistence.models.PhoneModel;
 import persistence.siteConstants.ISiteConst;
@@ -32,9 +33,17 @@ public class PhoneSearch implements IPhoneSearch {
 
     private void createPhone(final WebElement phone, final List<PhoneModel> phoneModels, final ISiteConst siteConst) {
         final PhoneModel phoneModel = new PhoneModel();
-        phoneModel.setName(phone.findElement(By.xpath(siteConst.getTitlePath())).getText());
-        phoneModel.setBrand(phone.findElement(By.xpath(siteConst.getManufacturerPath())).getText());
-        phoneModel.setPrice(phone.findElement(By.xpath(siteConst.getPricePath())).getText());
+        phoneModel.setWeb(siteConst.getWeb());
+        try {
+            phoneModel.setName(phone.findElement(By.xpath(siteConst.getTitlePath())).getText());
+        }catch (NoSuchElementException ex){
+            phoneModel.setName("No name has been found");
+        }
+        try {
+            phoneModel.setPrice(phone.findElement(By.xpath(siteConst.getPricePath())).getText());
+        } catch (NoSuchElementException ex) {
+            phoneModel.setPrice("No price has been found");
+        }
         phoneModels.add(phoneModel);
         System.out.println(phoneModel);
     }
@@ -52,7 +61,6 @@ public class PhoneSearch implements IPhoneSearch {
     public List<PhoneModel> performSearch(final String searchWord, final List<Sites> sites) {
         final List<PhoneModel> phoneModels = new ArrayList<>();
         sites.forEach(site -> phoneModels.addAll(performSearch(searchWord, site)));
-        DriverChrome.getInstance().stopDriver();
         return phoneModels;
     }
 
