@@ -16,10 +16,14 @@ public class MainViewController {
         searchButton = mainView.getSearchButton();
         textArea1 = mainView.getTextArea1();
 
-        searchButton.addActionListener(new SearchListener(textArea1));
+        searchButton.addActionListener(new SearchListener(textArea1, getMainView().getAmazonBox(), getMainView().getFnacBox(), getMainView().getPccomponentsBox()));
     }
 
     public void showMainFrame() {
         mainView.setVisible(true);
+    }
+
+    private MainView getMainView() {
+        return mainView;
     }
 }

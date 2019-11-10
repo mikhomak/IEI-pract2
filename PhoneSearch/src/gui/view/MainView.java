@@ -13,11 +13,11 @@ public class MainView extends JFrame {
     private JPanel mainPanel;
     private JButton searchButton;
     private JTextArea textArea1;
-    private JComboBox brandBox;
     private JCheckBox amazonBox;
     private JCheckBox fnacBox;
     private JCheckBox pccomponentsBox;
     private JTextField textField1;
+    private JComboBox comboBox1;
 
     private final List<String> brands = Arrays.asList("huawei", "xiamoi","samsung");
 

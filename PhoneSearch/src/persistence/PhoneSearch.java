@@ -53,6 +53,7 @@ public class PhoneSearch implements IPhoneSearch {
     public List<PhoneModel> performSearch(final String searchWord, final List<Sites> sites) {
         final List<PhoneModel> phoneModels = new ArrayList<>();
         sites.forEach(site -> phoneModels.addAll(performSearch(searchWord, site)));
+        DriverChrome.getInstance().stopDriver();
         return phoneModels;
     }
 
