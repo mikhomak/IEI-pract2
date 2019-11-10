@@ -30,12 +30,15 @@ public class SearchListener implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent actionEvent) {
-        String searchWord = (String) brandField.getSelectedItem();
-        if (searchWord == null || searchWord.equals("")) {
-            searchWord = DEFAULT_SEARCH_WORD;
+
+        final StringBuilder searchWord = new StringBuilder();
+        if(getBrandField().getSelectedItem() != null){
+            searchWord.append(getBrandField().getSelectedItem());
         }
-        final List<PhoneModel> phoneModels = phoneSearch.performSearch(searchWord, getSitesToSearch());
-        phoneModels.forEach(phone -> textArea.append(phone.toString()));
+        searchWord.append(" ").append(getModelField().getText());
+
+        final List<PhoneModel> phoneModels = phoneSearch.performSearch(searchWord.toString(), getSitesToSearch());
+        phoneModels.forEach(phone -> getTextArea().append(phone.toString()));
     }
 
     private List<Sites> getSitesToSearch() {
