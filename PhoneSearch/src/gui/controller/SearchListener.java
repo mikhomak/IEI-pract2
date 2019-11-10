@@ -2,6 +2,7 @@ package gui.controller;
 
 import persistence.IPhoneSearch;
 import persistence.PhoneSearch;
+import persistence.Sites;
 import persistence.models.PhoneModel;
 
 import javax.swing.*;
@@ -21,7 +22,7 @@ public class SearchListener implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent actionEvent) {
-        final List<PhoneModel> phoneModels = phoneSearch.performSearch("xiamoi");
+        final List<PhoneModel> phoneModels = phoneSearch.performSearch("xiamoi", Sites.FNAC);
         phoneModels.forEach(phone -> textArea.append(phone.toString()));
     }
 }

@@ -1,7 +1,6 @@
 package gui.controller;
 
 import gui.view.MainView;
-import persistence.IPhoneSearch;
 
 import javax.swing.*;
 
@@ -20,7 +19,7 @@ public class MainViewController {
         searchButton.addActionListener(new SearchListener(textArea1));
     }
 
-    public void showMainFrame(){
+    public void showMainFrame() {
         mainView.setVisible(true);
     }
 }
