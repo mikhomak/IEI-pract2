@@ -50,7 +50,7 @@ public class PhoneSearch implements IPhoneSearch {
         return DriverChrome.getInstance().getDriver().findElements(By.xpath(siteConst.getItemPath()));
     }
 
-    public List<PhoneModel> performSearch(final List<Sites> sites, final String searchWord) {
+    public List<PhoneModel> performSearch(final String searchWord, final List<Sites> sites) {
         final List<PhoneModel> phoneModels = new ArrayList<>();
         sites.forEach(site -> phoneModels.addAll(performSearch(searchWord, site)));
         return phoneModels;

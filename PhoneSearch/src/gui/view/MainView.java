@@ -7,8 +7,8 @@ import java.util.List;
 
 public class MainView extends JFrame {
 
-    private final static int WIDTH = 500;
-    private final static int HEIGHT = 500;
+    private final static int WIDTH = 800;
+    private final static int HEIGHT = 800;
 
     private JPanel mainPanel;
     private JButton searchButton;
@@ -32,5 +32,17 @@ public class MainView extends JFrame {
 
     public JTextArea getTextArea1() {
         return textArea1;
+    }
+
+    public JCheckBox getAmazonBox() {
+        return amazonBox;
+    }
+
+    public JCheckBox getFnacBox() {
+        return fnacBox;
+    }
+
+    public JCheckBox getPccomponentsBox() {
+        return pccomponentsBox;
     }
 }
