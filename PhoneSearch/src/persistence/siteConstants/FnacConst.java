@@ -9,7 +9,6 @@ public class FnacConst extends ASiteConst {
         url = "https://www.fnac.es";
         titlePath = ".//*[contains(@class, 'Article-title')]";
         pricePath = ".//*[contains(@class, 'userPrice')]";
-        manufacturerPath = ".//*[contains(@class, 'data')]";
         itemPath = "//*[contains(@class, 'Article-item js-Search-hashLinkId')]";
         searchPath = "Search";
     }
