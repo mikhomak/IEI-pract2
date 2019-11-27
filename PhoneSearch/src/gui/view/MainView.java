@@ -19,7 +19,7 @@ public class MainView extends JFrame {
     private JTextField modelField;
     private JComboBox<String> brandField;
 
-    private final List<String> brands = Arrays.asList("huawei", "xiamoi","samsung");
+    private final List<String> brands = Arrays.asList("huawei", "xiamoi","samsung", "LG", "Sony", "motorola", "apple", "onePlus", "lenovo");
 
     public MainView() throws HeadlessException {
         setSize(WIDTH, HEIGHT);
