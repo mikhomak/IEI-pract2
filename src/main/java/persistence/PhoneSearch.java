@@ -18,7 +18,6 @@ public class PhoneSearch implements IPhoneSearch {
 
     private final SiteFabric siteFabric;
 
-
     public PhoneSearch() {
         siteFabric = new SiteFabric();
     }

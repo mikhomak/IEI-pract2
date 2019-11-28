@@ -20,7 +20,7 @@ import persistence.models.PhoneModel;
 
 public class HomeController {
 
-    private List<String> DEFAULT_BRANDS = Arrays.asList("huawei", "xiamoi","samsung");
+    private List<String> DEFAULT_BRANDS = Arrays.asList("huawei", "xiaomi","samsung");
     ObservableList<String> items = FXCollections.observableArrayList();
 
     @FXML
