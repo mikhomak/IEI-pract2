@@ -1,5 +1,6 @@
 package controller;
 
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -49,10 +50,16 @@ public class HomeController {
 
     @FXML
     void onSearch(ActionEvent event) {
-        String search = modelInput.getText().trim();
-        PhoneSearch phoneSearch = new PhoneSearch();
-        final List<PhoneModel> phoneModels = phoneSearch.performSearch(search, getSitesToSearch());
-        phoneModels.forEach(e -> items.add(e.toString()));
+        String search = selectBrand.getSelectionModel().getSelectedItem() + " " + modelInput.getText().trim();
+        new Thread(() -> {
+            PhoneSearch phoneSearch = new PhoneSearch();
+            final List<PhoneModel> phoneModels = phoneSearch.performSearch(search, getSitesToSearch());
+
+            Platform.runLater(() -> phoneModels.forEach(e -> items.add(e.toString())));
+        }).start();
+
+
+        System.out.println("Search");
     }
 
     private List<Sites> getSitesToSearch() {

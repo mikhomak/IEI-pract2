@@ -1,20 +1,14 @@
 package persistence.siteConstants;
 
-import org.openqa.selenium.By;
-
 public class PccomponentsConst extends ASiteConst {
 
     public PccomponentsConst() {
         web ="PcComponents";
-        url = "https://www.pccomponentes.com/";
-        titlePath = ".//*[contains(@class, 'title')]";
-        pricePath = ".//*[contains(@class, 'price')]";
-        itemPath = "//*[contains(@class, 'ais-Hits-item')]";
-        searchPath = "query";
+        url = "https://www.pccomponentes.com/buscar/?query=";
+        titlePath = ".//a[contains(@class, 'enlace-disimulado')]";
+        pricePath = ".//*[contains(@class, 'tarjeta-articulo__precio-actual')]";
+        itemPath = "//article[contains(@class, 'tarjeta-articulo')]";
+        // #pg-0&or-relevance better results
     }
 
-    @Override
-    public By getSearchBar() {
-        return By.name(searchPath);
-    }
 }

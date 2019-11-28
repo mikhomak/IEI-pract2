@@ -7,6 +7,9 @@ import persistence.models.PhoneModel;
 import persistence.siteConstants.ISiteConst;
 import persistence.siteConstants.SiteFabric;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,9 +24,8 @@ public class PhoneSearch implements IPhoneSearch {
     }
 
 
-    public List<PhoneModel> performSearch(final String searchWord, final Sites site) {
+    public List<PhoneModel> performSearch(final String searchWord, final Sites site) throws UnsupportedEncodingException {
         final ISiteConst siteConst = getSiteFabric().createSite(site);
-        DriverChrome.getInstance().getDriver().get(siteConst.getUrl());
         getToTheSearchPage(searchWord, siteConst);
         final List<PhoneModel> phoneModels = new ArrayList<>();
         final List<WebElement> phoneElements = getPhoneElements(siteConst);
@@ -48,10 +50,9 @@ public class PhoneSearch implements IPhoneSearch {
         System.out.println(phoneModel);
     }
 
-    private void getToTheSearchPage(final String searchWord, final ISiteConst siteConst) {
-        final WebElement searchBar = DriverChrome.getInstance().getDriver().findElement(siteConst.getSearchBar());
-        searchBar.sendKeys(searchWord);
-        searchBar.submit();
+    private void getToTheSearchPage(final String searchWord, final ISiteConst siteConst) throws UnsupportedEncodingException {
+        String url = siteConst.getUrl() + URLEncoder.encode(searchWord, StandardCharsets.UTF_8.toString());
+        DriverChrome.getInstance().getDriver().get(url);
     }
 
     private List<WebElement> getPhoneElements(final ISiteConst siteConst) {
@@ -60,7 +61,15 @@ public class PhoneSearch implements IPhoneSearch {
 
     public List<PhoneModel> performSearch(final String searchWord, final List<Sites> sites) {
         final List<PhoneModel> phoneModels = new ArrayList<>();
-        sites.forEach(site -> phoneModels.addAll(performSearch(searchWord, site)));
+        sites.forEach(site -> {
+            List<PhoneModel> phoneModel = null;
+            try {
+                phoneModel = performSearch(searchWord, site);
+                phoneModels.addAll(phoneModel);
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
+            }
+        });
         return phoneModels;
     }
 
