@@ -50,6 +50,7 @@ public class HomeController {
 
     @FXML
     void onSearch(ActionEvent event) {
+        listItems.getItems().clear();
         String search = selectBrand.getSelectionModel().getSelectedItem() + " " + modelInput.getText().trim();
         new Thread(() -> {
             PhoneSearch phoneSearch = new PhoneSearch();
