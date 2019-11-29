@@ -18,10 +18,11 @@ public class Main extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/home.fxml"));
-        Scene scene = new Scene(root, 860, 600);
+        Scene scene = new Scene(root, 950, 600);
 
         stage.setTitle("IEI");
         stage.setScene(scene);
+        stage.setResizable(false);
         stage.show();
 
         stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
