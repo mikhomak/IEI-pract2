@@ -6,6 +6,7 @@ public class ASiteConst implements ISiteConst {
     String itemPath;
     String titlePath;
     String pricePath;
+    String discountPath;
     String web;
     String onlyPhoneSearch;
 
@@ -27,6 +28,11 @@ public class ASiteConst implements ISiteConst {
     @Override
     public String getPricePath() {
         return pricePath;
+    }
+
+    @Override
+    public String getDiscountPath() {
+        return discountPath;
     }
 
     @Override

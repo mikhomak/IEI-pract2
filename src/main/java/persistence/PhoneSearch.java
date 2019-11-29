@@ -59,6 +59,13 @@ public class PhoneSearch implements IPhoneSearch {
             } catch (NoSuchElementException ex) {
                 return;
             }
+
+            try {
+                phoneModel.setDiscount(phone.findElement(By.xpath(siteConst.getDiscountPath())).getText());
+            } catch (NoSuchElementException ex) {
+                return;
+            }
+
             phoneModels.add(phoneModel);
             System.out.println(phoneModel);
         }
