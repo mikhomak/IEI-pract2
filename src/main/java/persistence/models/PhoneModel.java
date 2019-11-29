@@ -4,7 +4,7 @@ public class PhoneModel {
     private String name;
     private String price;
     private String web;
-    private String discount;
+    private Double discount;
 
     public String getName() {
         return name;
@@ -30,16 +30,20 @@ public class PhoneModel {
         this.web = web;
     }
 
-    public String getDiscount() {
+    public Double getDiscount() {
         return discount;
     }
 
-    public void setDiscount(String discount) {
+    public void setDiscount(Double discount) {
         this.discount = discount;
     }
 
     @Override
     public String toString() {
-        return web + " : " + name + " " + price + " (" + discount + ")";
+        String info = web + " : " + name + " " + price + "\u20ac";
+        if (discount != null) {
+            info += " (" + discount + "\u20ac)";
+        }
+        return info;
     }
 }

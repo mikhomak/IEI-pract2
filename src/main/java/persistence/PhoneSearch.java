@@ -44,7 +44,7 @@ public class PhoneSearch implements IPhoneSearch {
         try {
             phoneModel.setName(phone.findElement(By.xpath(siteConst.getTitlePath())).getText());
         } catch (NoSuchElementException ex) {
-            return;
+            phoneModel.setName("No name");
         }
 
         phoneNameLower = phoneModel.getName().toLowerCase();
@@ -55,15 +55,18 @@ public class PhoneSearch implements IPhoneSearch {
 
         if(!hasGarbage) {
             try {
-                phoneModel.setPrice(phone.findElement(By.xpath(siteConst.getPricePath())).getText());
+                String price = phone.findElement(By.xpath(siteConst.getPricePath())).getText().replaceAll(",", ".").replaceAll("[^\\d.]", "");
+                phoneModel.setPrice(price);
             } catch (NoSuchElementException ex) {
-                return;
+                phoneModel.setPrice("");
             }
 
             try {
-                phoneModel.setDiscount(phone.findElement(By.xpath(siteConst.getDiscountPath())).getText());
-            } catch (NoSuchElementException ex) {
-                return;
+                String discount = phone.findElement(By.xpath(siteConst.getDiscountPath())).getText().replaceAll(",", ".").replaceAll("[^\\d.]", "");
+                System.out.println(discount);
+                phoneModel.setDiscount(Double.parseDouble(discount));
+            } catch (NoSuchElementException | NumberFormatException en) {
+                phoneModel.setDiscount(null);
             }
 
             phoneModels.add(phoneModel);
