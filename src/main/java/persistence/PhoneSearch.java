@@ -15,7 +15,6 @@ import java.util.List;
 
 public class PhoneSearch implements IPhoneSearch {
 
-
     private final SiteFabric siteFabric;
 
     private String phoneNameLower;
@@ -25,12 +24,16 @@ public class PhoneSearch implements IPhoneSearch {
         siteFabric = new SiteFabric();
     }
 
-
     public List<PhoneModel> performSearch(final String searchWord, final Sites site) throws UnsupportedEncodingException {
         final ISiteConst siteConst = getSiteFabric().createSite(site);
         getToTheSearchPage(searchWord, siteConst);
         final List<PhoneModel> phoneModels = new ArrayList<>();
-        final List<WebElement> phoneElements = getPhoneElements(siteConst);
+
+        List<WebElement> phoneElements = new ArrayList<>();
+        while (phoneElements.isEmpty()) {
+            phoneElements = getPhoneElements(siteConst);
+            if (phoneElements.isEmpty()) DriverChrome.getInstance().getDriver().navigate().refresh();
+        }
         phoneElements.forEach(phone -> createPhone(phone, phoneModels, siteConst));
         return phoneModels;
     }
@@ -41,7 +44,7 @@ public class PhoneSearch implements IPhoneSearch {
         try {
             phoneModel.setName(phone.findElement(By.xpath(siteConst.getTitlePath())).getText());
         } catch (NoSuchElementException ex) {
-            phoneModel.setName("No name has been found");
+            return;
         }
 
         phoneNameLower = phoneModel.getName().toLowerCase();
@@ -50,11 +53,11 @@ public class PhoneSearch implements IPhoneSearch {
             hasGarbage = true;
         }
 
-        if(hasGarbage == false) {
+        if(!hasGarbage) {
             try {
                 phoneModel.setPrice(phone.findElement(By.xpath(siteConst.getPricePath())).getText());
             } catch (NoSuchElementException ex) {
-                phoneModel.setPrice("No price has been found");
+                return;
             }
             phoneModels.add(phoneModel);
             System.out.println(phoneModel);

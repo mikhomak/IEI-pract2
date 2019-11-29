@@ -5,11 +5,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
@@ -18,9 +13,13 @@ import persistence.PhoneSearch;
 import persistence.Sites;
 import persistence.models.PhoneModel;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 public class HomeController {
 
-    private List<String> DEFAULT_BRANDS = Arrays.asList("huawei", "xiaomi","samsung","LG","sony","motorola","apple","lenovo","oneplus");
+    private List<String> DEFAULT_BRANDS = Arrays.asList("Huawei", "Xiaomi","Samsung","LG","Sony","Motorola","Apple","Lenovo","OnePlus");
     ObservableList<String> items = FXCollections.observableArrayList();
 
     @FXML
@@ -55,12 +54,8 @@ public class HomeController {
         new Thread(() -> {
             PhoneSearch phoneSearch = new PhoneSearch();
             final List<PhoneModel> phoneModels = phoneSearch.performSearch(search, getSitesToSearch());
-
             Platform.runLater(() -> phoneModels.forEach(e -> items.add(e.toString())));
         }).start();
-
-
-        System.out.println("Search");
     }
 
     private List<Sites> getSitesToSearch() {
