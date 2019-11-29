@@ -18,7 +18,6 @@ public class PhoneSearch implements IPhoneSearch {
     private final SiteFabric siteFabric;
 
     private String phoneNameLower;
-    private Boolean hasGarbage = false;
 
     public PhoneSearch() {
         siteFabric = new SiteFabric();
@@ -40,6 +39,7 @@ public class PhoneSearch implements IPhoneSearch {
 
     private void createPhone(final WebElement phone, final List<PhoneModel> phoneModels, final ISiteConst siteConst) {
         final PhoneModel phoneModel = new PhoneModel();
+        Boolean hasGarbage = false;
         phoneModel.setWeb(siteConst.getWeb());
         try {
             phoneModel.setName(phone.findElement(By.xpath(siteConst.getTitlePath())).getText());
