@@ -18,6 +18,9 @@ public class PhoneSearch implements IPhoneSearch {
 
     private final SiteFabric siteFabric;
 
+    private String phoneNameLower;
+    private Boolean hasGarbage = false;
+
     public PhoneSearch() {
         siteFabric = new SiteFabric();
     }
@@ -40,17 +43,26 @@ public class PhoneSearch implements IPhoneSearch {
         } catch (NoSuchElementException ex) {
             phoneModel.setName("No name has been found");
         }
-        try {
-            phoneModel.setPrice(phone.findElement(By.xpath(siteConst.getPricePath())).getText());
-        } catch (NoSuchElementException ex) {
-            phoneModel.setPrice("No price has been found");
+
+        phoneNameLower = phoneModel.getName().toLowerCase();
+
+        if(phoneNameLower.contains("funda") || phoneNameLower.contains("case") || phoneNameLower.contains("carcasa")) {
+            hasGarbage = true;
         }
-        phoneModels.add(phoneModel);
-        System.out.println(phoneModel);
+
+        if(hasGarbage == false) {
+            try {
+                phoneModel.setPrice(phone.findElement(By.xpath(siteConst.getPricePath())).getText());
+            } catch (NoSuchElementException ex) {
+                phoneModel.setPrice("No price has been found");
+            }
+            phoneModels.add(phoneModel);
+            System.out.println(phoneModel);
+        }
     }
 
     private void getToTheSearchPage(final String searchWord, final ISiteConst siteConst) throws UnsupportedEncodingException {
-        String url = siteConst.getUrl() + URLEncoder.encode(searchWord, StandardCharsets.UTF_8.toString());
+        String url = siteConst.getUrl() + URLEncoder.encode(searchWord, StandardCharsets.UTF_8.toString()) + siteConst.getOnlyPhoneSearch();
         DriverChrome.getInstance().getDriver().get(url);
     }
 

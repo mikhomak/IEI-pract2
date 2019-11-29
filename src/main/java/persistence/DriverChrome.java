@@ -10,6 +10,7 @@ public class DriverChrome implements IDriver {
     private final static String CHROME_PROPERTY = "webdriver.chrome.driver";
     private final static String ARGUMENTS = "--start-maximized";
 
+
     private static WebDriver driver;
     private static DriverChrome instance = null;
 

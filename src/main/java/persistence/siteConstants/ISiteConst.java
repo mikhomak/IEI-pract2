@@ -6,4 +6,5 @@ public interface ISiteConst {
     String getTitlePath();
     String getPricePath();
     String getItemPath();
+    String getOnlyPhoneSearch();
 }

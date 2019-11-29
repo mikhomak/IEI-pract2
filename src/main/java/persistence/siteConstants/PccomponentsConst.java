@@ -8,6 +8,7 @@ public class PccomponentsConst extends ASiteConst {
         titlePath = ".//a[contains(@class, 'enlace-disimulado')]";
         pricePath = ".//*[contains(@class, 'tarjeta-articulo__precio-actual')]";
         itemPath = "//article[contains(@class, 'tarjeta-articulo')]";
+        onlyPhoneSearch = "#pg-0&or-search&fm-1116";
         // #pg-0&or-relevance better results
     }
 
